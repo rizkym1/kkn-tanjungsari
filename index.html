@@ -8,6 +8,12 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <style>
       body {
         font-family: "Poppins", sans-serif;
@@ -16,7 +22,7 @@
 
       .navbar {
         background-color: #2c3e50;
-        padding: 15px 0;
+        padding: 10px 0;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       }
 
@@ -47,14 +53,28 @@
       }
 
       .hero h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         font-weight: 700;
-        margin-bottom: 20px;
       }
 
       .hero p {
         font-size: 1.2rem;
         font-weight: 300;
+      }
+
+      .btn-custom {
+        background-color: #f1c40f;
+        color: #2c3e50;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .btn-custom:hover {
+        background-color: #d4ac0d;
+        transform: scale(1.05);
       }
 
       .section {
@@ -65,34 +85,12 @@
         font-weight: 600;
         margin-bottom: 40px;
       }
-
-      /* Foto */
-      .photo-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin-bottom: 20px;
-      }
-
-      /* .photo-container-utama {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        margin-bottom: 20px;
-      } */
-
-      .photo-item {
-        text-align: center;
-      }
-
-      .photo-item img {
+      .carousel-item img {
         width: 100%;
         height: 400px;
         object-fit: cover;
-        object-position: center;
         border-radius: 10px;
       }
-
       .photo-caption {
         margin-top: 10px;
         font-size: 0.95rem;
@@ -100,108 +98,62 @@
         color: #2c3e50;
       }
 
-      /* Foto Bantu */
-      /* .photo-container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-        margin-bottom: 20px;
-}
-
-
-.photo-kata {
-  font-weight: 500;
-  font-size: 1rem;
-} */
-
-
-      /* Video */
+      .photo-container,
       .video-container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
       }
 
+      .photo-item img,
       .video-container video {
         width: 100%;
-        height: 400px;
+        height: 300px;
         object-fit: cover;
         border-radius: 10px;
+        transition: transform 0.3s ease;
       }
 
-      /* Navigasi carousel */
-      .carousel-control-prev,
-      .carousel-control-next {
-        width: 5%;
-        background-color: rgba(0, 0, 0, 0.3);
-        border-radius: 50px;
-        height: 50px;
-        top: 50%;
-        transform: translateY(-50%);
+      .photo-item img:hover,
+      .video-container video:hover {
+        transform: scale(1.05);
       }
 
       footer {
         background-color: #2c3e50;
         color: white;
-        padding: 20px 0;
+        padding: 15px 0;
         text-align: center;
         font-size: 0.9rem;
       }
 
-      .btn-custom {
-        background-color: #f1c40f;
-        color: #2c3e50;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 25px;
-        font-weight: 500;
-        transition: background-color 0.3s ease;
-      }
-
-      .btn-custom:hover {
-        background-color: #d4ac0d;
-      }
-
-      /* Responsif */
-      @media (max-width: 768px) {
-        .photo-container,
-        .video-container {
-          grid-template-columns: 1fr;
-        }
-
-        .photo-item img {
-          height: 300px;
-        }
-
-        .video-container video {
-          height: 250px;
-        }
-      }
       .navbar-brand img {
-  height: 70px !important; /* Ubah sesuai kebutuhan */
-  width: auto !important; /* Pertahankan proporsi gambar */
-}
-.navbar {
-    height: 70px; /* Ukuran navbar tetap */
-  }
+        height: 50px;
+        width: auto;
+      }
 
-  .logo-navbar {
-    max-height: 60px; /* Logo besar tapi tetap muat di navbar */
-    height: auto;
-    width: auto;
-  }
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
 
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .photo-item img,
+        .video-container video {
+          height: 200px;
+        }
+      }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
-      <div class="container d-flex justify-content-between align-items-center">
-        <!-- Logo di kiri -->
-        <a class="navbar-brand" href="#">
-          <img src="img/rev_logo.png" alt="Logo" class="logo-navbar" />
-        </a>
-    
-        <!-- Tombol toggle untuk menu di HP -->
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          ><img src="img/rev_logo.png" alt="Logo"
+        /></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -210,8 +162,6 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-    
-        <!-- Menu -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
@@ -228,93 +178,47 @@
       </div>
     </nav>
 
-    
-
-    <section class="hero" id="home">
+    <section class="hero" id="home" data-aos="fade-up">
       <div>
-        <h1>Rekap Kegiatan Program Kerja KKN</h1>
-        <p>Desa Tanjungsari, Kecamatan Sadananya</p>
-        <a href="#utama" class="btn btn-custom mt-4">Lihat Dokumentasi</a>
+        <h1 class="animate__animated animate__fadeInDown">
+          Rekap Kegiatan Program Kerja KKN
+        </h1>
+        <p class="animate__animated animate__fadeInUp">
+          Desa Tanjungsari, Kecamatan Sadananya
+        </p>
+        <a
+          href="#utama"
+          class="btn btn-custom animate__animated animate__fadeInUp animate__delay-1s"
+          >Lihat Dokumentasi</a
+        >
       </div>
     </section>
 
-    <!-- Bagian Foto: Program Utama -->
     <section class="section bg-light" id="utama">
-      <div class="container">
+      <div class="container" data-aos="fade-up">
         <h2 class="text-center">Program Utama</h2>
-        <div id="carouselUtama" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="photo-container">
-                <div class="photo-item">
-                  <img src="img/gor.jpg" alt="Gotong Royong" />
-                  <p class="photo-caption">
-                    Seminar Workshop Pengembangan dan Pengelolaan Wisata Lokal
-                    Desa Tanjungsari
-                  </p>
-                </div>
-                <div class="photo-item">
-                  <img src="img/webb.jpg" alt="Sosialisasi" />
-                  <p class="photo-caption">
-                    Mengembangkan website desa
-                    <a href="https://tanjungsari-ciamis.desa.id/potensi-desa"
-                      >https://tanjungsari-ciamis.desa.id/potensi-desa</a
-                    >
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="carousel-item">
-              <div class="photo-container">
-                <div class="photo-item">
-                  <img src="img/bg2.jpg" alt="Kegiatan Desa" />
-                  <p class="photo-caption">Diskusi bersama perangkat desa</p>
-                </div>
-                <div class="photo-item">
-                  <img
-                    src="img/CurugPangantenTanjungsari5.jpg.webp"
-                    alt="Bersih Desa"
-                  />
-                  <p class="photo-caption">
-                    Aksi bersih-bersih di sekitar Curug Panganten
-                  </p>
-                </div>
-                <div class="photo-item">
-                  <img
-                    src="img/CurugPangantenTanjungsari3.jpg.webp"
-                    alt="Pelatihan"
-                  />
-                  <p class="photo-caption">
-                    Pelatihan pembuatan produk lokal desa
-                  </p>
-                </div>
-              </div>
-            </div>
+        <div class="photo-container">
+          <div class="photo-item" data-aos="zoom-in">
+            <img src="img/gor.jpg" alt="Seminar" />
+            <p class="photo-caption">
+              Seminar Workshop Pengembangan Wisata Desa
+            </p>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselUtama"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon"></span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselUtama"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon"></span>
-          </button> -->
+          <div class="photo-item" data-aos="zoom-in" data-aos-delay="100">
+            <img src="img/webb.jpg" alt="Website Desa" />
+            <p class="photo-caption">
+              Mengembangkan website desa
+              <a href="https://tanjungsari-ciamis.desa.id/potensi-desa">Link</a>
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Bagian Foto: Program Tambahan -->
+    <!-- Program Tambahan dengan Slide -->
     <section class="section bg-light" id="tambahan">
       <div class="container">
-        <h2 class="text-center">Program Tambahan</h2>
+        <h2 class="text-center" data-aos="fade-down">Program Tambahan</h2>
         <div
           id="carouselTambahan"
           class="carousel slide"
@@ -322,48 +226,34 @@
         >
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <div class="photo-container">
-                <div class="photo-item">
-                  <img src="img/sekul.jpg" alt="" />
-                  <p class="photo-caption">Mengajar Di Sekolah</p>
+              <div class="row">
+                <div class="col-md-4" data-aos="zoom-in">
+                  <img src="img/sekul.jpg" alt="Mengajar di Sekolah" />
+                  <p class="photo-caption">Mengajar di Sekolah</p>
                 </div>
-                <div class="photo-item">
-                  <img src="img/plang.jpg" alt="Gotong Royong" />
-                  <p class="photo-caption">
-                    Membuat Plang Wisata
-                  </p>
+                <div class="col-md-4" data-aos="zoom-in">
+                  <img src="img/plang.jpg" alt="Membuat Plang Wisata" />
+                  <p class="photo-caption">Membuat Plang Wisata</p>
                 </div>
-                <div class="photo-item">
-                  <img src="img/umkm.jpg" alt="Sosialisasi" />
-                  <p class="photo-caption">
-                    Sosialisai UMKM yang ada di Desa Tanjungsari
-                  </p>
+                <div class="col-md-4" data-aos="zoom-in">
+                  <img src="img/umkm.jpg" alt="Sosialisasi UMKM" />
+                  <p class="photo-caption">Sosialisasi UMKM</p>
                 </div>
               </div>
             </div>
             <div class="carousel-item">
-              <div class="photo-container">
-                <div class="photo-item">
-                  <img src="img/ngaji.jpg" alt="Kegiatan Desa" />
-                  <p class="photo-caption">Menghadiri pengajian</p>
+              <div class="row">
+                <div class="col-md-4" data-aos="zoom-in">
+                  <img src="img/ngaji.jpg" alt="Pengajian" />
+                  <p class="photo-caption">Menghadiri Pengajian</p>
                 </div>
-                <div class="photo-item">
-                  <img
-                    src="img/denah.jpg"
-                    alt=""
-                  />
-                  <p class="photo-caption">
-                    Denah Leuwi Pamipiran
-                  </p>
+                <div class="col-md-4" data-aos="zoom-in">
+                  <img src="img/denah.jpg" alt="Denah Leuwi Pamipiran" />
+                  <p class="photo-caption">Denah Leuwi Pamipiran</p>
                 </div>
-                <div class="photo-item">
-                  <img
-                    src="img/panganten.jpg"
-                    alt=""
-                  />
-                  <p class="photo-caption">
-                    Denah Curug Panganten
-                  </p>
+                <div class="col-md-4" data-aos="zoom-in">
+                  <img src="img/panganten.jpg" alt="Denah Curug Panganten" />
+                  <p class="photo-caption">Denah Curug Panganten</p>
                 </div>
               </div>
             </div>
@@ -388,49 +278,34 @@
       </div>
     </section>
 
-    <!-- Bagian Foto: Program Bantu -->
-<section class="section bg-light" id="tambahan">
-  <div class="container">
-    <h2 class="text-center">Program Bantu</h2>
-    <div id="carouselBantu" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="photo-container justify-content-center">
-            <div class="photo-item text-center">
-              <img src="img/bebersih.jpg" alt="Kerja Bakti" />
-              <p class="photo-caption mt-2">Kerja Bakti</p>
-            </div>
-            <div class="photo-item text-center">
-              <img src="img/babantu.jpg" alt="Memperbaiki Jalan" />
-              <p class="photo-caption mt-2">Memperbaiki Jalan</p>
-            </div>
+    <section class="section bg-light" id="bantu">
+      <div class="container" data-aos="fade-up">
+        <h2 class="text-center">Program Bantu</h2>
+        <div class="photo-container">
+          <div class="photo-item" data-aos="zoom-in">
+            <img src="img/bebersih.jpg" alt="Kerja Bakti" />
+            <p class="photo-caption">Kerja Bakti</p>
+          </div>
+          <div class="photo-item" data-aos="zoom-in" data-aos-delay="100">
+            <img src="img/babantu.jpg" alt="Perbaikan Jalan" />
+            <p class="photo-caption">Memperbaiki Jalan</p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-
-    <!-- Bagian Video -->
     <section class="section" id="video">
-      <div class="container">
+      <div class="container" data-aos="fade-up">
         <h2 class="text-center">Video Dokumentasi</h2>
         <div class="video-container">
-          <video controls>
-            <source
-              src="video/Video WhatsApp 2025-02-20 pukul 22.48.14_943082b2.mp4"
-              type="video/mp4"
-            />
-            Browser tidak mendukung video.
+          <video controls data-aos="zoom-in">
+            <source src="video/video1.mp4" type="video/mp4" />
           </video>
-          <video controls>
+          <video controls data-aos="zoom-in" data-aos-delay="100">
             <source src="video/video2.mp4" type="video/mp4" />
-            Browser tidak mendukung video.
           </video>
-          <video controls>
+          <video controls data-aos="zoom-in" data-aos-delay="200">
             <source src="video/video3.mp4" type="video/mp4" />
-            Browser tidak mendukung video.
           </video>
         </div>
       </div>
@@ -441,5 +316,11 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    </script>
   </body>
 </html>
